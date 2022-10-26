@@ -70,67 +70,58 @@ public class ClienteController {
 
 	// método para exlcusao
 	public void excluirCliente() {
-		try	{
-			
+		try {
+
 			System.out.println();
-			
+
 			Integer idCliente = ClienteHelper.lerIdCliente();
-			
+
 			ClienteRepository clienteRepository = new ClienteRepository();
 			Cliente cliente = clienteRepository.findById(idCliente);
-			
-			if	(cliente = null)	{
+
+			if (cliente == null) {
 				System.out.println("\nCliente não encontrado");
 			}
-			
-			else	{
-				
-				ClienteRepository.delete(cliente);	
+
+			else {
+
+				clienteRepository.delete(cliente);
 				System.out.println("\nCliente excluido com sucesso");
 			}
-			
-		}	
-		 
-		
-		catch	(Exception e) {
+
+		}
+
+		catch (Exception e) {
 			System.out.println("\nErro:  " + e.getMessage());
 		}
-	}	
-		
-		//metodo para consultar e imprimir todos os clientes cadastrados
-	public void consultarClientes()	{
-			
-				try	{
-						System.out.println("\nConsulta de clientes");
-						
-						ClienteRepository clienteRepository = new ClienteRepository();
-						List<Cliente> lista = clienteRepository.findALL();
-						
-						
-						System.out.println("\nTotal de clientes:  " + lista.size());
-							
-				for (Cliente cliente : lista) {
-								
-								System.out.println("\nCliente:  ");
-								System.out.println("ID...:  " + cliente.getIdcliente());
-								System.out.println("Nome..:  " + cliente.getNome());
-								System.out.println("Email..:  " + cliente.getEmail());
-								System.out.println("Telefone..: " + cliente.getTelefone());
-				}
-						
-						
-				}
-						
-						catch	(Exception e) {
-							System.out.println("\nErro:  " + e.getMessage());
-						}
-						
-			
-			
-			
-			
 	}
-		
-	
+
+	// metodo para consultar e imprimir todos os clientes cadastrados
+	public void consultarCliente() {
+
+		try {
+			System.out.println("\nConsulta de clientes");
+
+			ClienteRepository clienteRepository = new ClienteRepository();
+			List<Cliente> lista = clienteRepository.findALL();
+
+			System.out.println("\nTotal de clientes:  " + lista.size());
+
+			for (Cliente cliente : lista) {
+
+				System.out.println("\nCliente:  ");
+				System.out.println("ID...:  " + cliente.getIdcliente());
+				System.out.println("Nome..:  " + cliente.getNome());
+				System.out.println("Email..:  " + cliente.getEmail());
+				System.out.println("Telefone..: " + cliente.getTelefone());
+			}
+
+		}
+
+		catch (Exception e) {
+			System.out.println("\nErro:  " + e.getMessage());
+		}
+
+	}
 
 }
